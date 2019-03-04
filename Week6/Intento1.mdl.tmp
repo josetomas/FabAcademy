@@ -1,0 +1,7 @@
+**********************
+* Autodesk EAGLE - SPICE Model File
+* Author:
+* Date: 
+**********************
+.SUBCKT subnam N1 <N2; N3 ...>
+.ENDS subnam
