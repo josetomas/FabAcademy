@@ -1012,7 +1012,9 @@ Variants with postfix FAB are widened to allow the routing of internal traces</d
 <part name="P+4" library="audio amplifier example" library_urn="urn:adsk.eagle:library:970892" deviceset="VCC" device=""/>
 <part name="GND5" library="audio amplifier example" library_urn="urn:adsk.eagle:library:970892" deviceset="GND" device="" value="SUP"/>
 <part name="P+5" library="audio amplifier example" library_urn="urn:adsk.eagle:library:970892" deviceset="VCC" device=""/>
-<part name="S1" library="fabAca" deviceset="6MM_SWITCH" device="6MM_SWITCH"/>
+<part name="S1" library="fabAca" deviceset="6MM_SWITCH" device="6MM_SWITCH">
+<attribute name="SPICEPREFIX" value="S"/>
+</part>
 <part name="GND6" library="audio amplifier example" library_urn="urn:adsk.eagle:library:970892" deviceset="GND" device="" value="SUP"/>
 <part name="R2" library="fabAca" deviceset="RES-US" device="1206W" value="10K"/>
 <part name="P+6" library="audio amplifier example" library_urn="urn:adsk.eagle:library:970892" deviceset="VCC" device=""/>
