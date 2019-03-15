@@ -1,0 +1,3 @@
+Explicación torque motores: 
+- https://www.motioncontroltips.com/faq-whats-the-difference-between-detent-torque-and-holding-torque/
+- https://www.engineeringtoolbox.com/electrical-motors-torques-d_651.html

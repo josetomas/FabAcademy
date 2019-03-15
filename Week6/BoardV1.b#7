@@ -14,13 +14,13 @@
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
@@ -32,7 +32,7 @@
 <layer number="36" name="bGlue" color="7" fill="5" visible="no" active="yes"/>
 <layer number="37" name="tTest" color="7" fill="1" visible="no" active="yes"/>
 <layer number="38" name="bTest" color="7" fill="1" visible="no" active="yes"/>
-<layer number="39" name="tKeepout" color="4" fill="11" visible="no" active="yes"/>
+<layer number="39" name="tKeepout" color="4" fill="11" visible="yes" active="yes"/>
 <layer number="40" name="bKeepout" color="1" fill="11" visible="yes" active="yes"/>
 <layer number="41" name="tRestrict" color="4" fill="10" visible="yes" active="yes"/>
 <layer number="42" name="bRestrict" color="1" fill="10" visible="yes" active="yes"/>
@@ -44,7 +44,7 @@
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="yes"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
@@ -157,10 +157,10 @@
 </layers>
 <board>
 <plain>
-<wire x1="-0.83" y1="-0.58" x2="29.25" y2="-0.65" width="0" layer="20"/>
-<wire x1="29.25" y1="-0.65" x2="29.29" y2="30.65" width="0" layer="20"/>
-<wire x1="29.29" y1="30.65" x2="-0.79" y2="30.72" width="0" layer="20"/>
-<wire x1="-0.79" y1="30.72" x2="-0.83" y2="-0.58" width="0" layer="20"/>
+<wire x1="-0.57" y1="-0.3" x2="28.68" y2="-0.59" width="0" layer="20"/>
+<wire x1="28.68" y1="-0.59" x2="28.82" y2="30.22" width="0" layer="20"/>
+<wire x1="28.82" y1="30.22" x2="-0.43" y2="30.51" width="0" layer="20"/>
+<wire x1="-0.43" y1="30.51" x2="-0.57" y2="-0.3" width="0" layer="20"/>
 </plain>
 <libraries>
 <library name="fabAca">
@@ -537,9 +537,7 @@ design rules under a new name.</description>
 <element name="R3" library="fabAca" package="R1206W" value="10K" x="8.06" y="25.07"/>
 <element name="R4" library="fabAca" package="R1206W" value="10K" x="13.04" y="26.74" rot="R270"/>
 <element name="R5" library="fabAca" package="R1206W" value="10K" x="21.2" y="1.8" rot="R180"/>
-<element name="S1" library="fabAca" package="6MM_SWITCH" value="" x="9.55" y="6.06">
-<attribute name="SPICEPREFIX" value="S" x="9.55" y="6.06" size="1.778" layer="27" display="off"/>
-</element>
+<element name="S1" library="fabAca" package="6MM_SWITCH" value="" x="9.55" y="6.06"/>
 <element name="U$1" library="fabAca" package="2X03SMD" value="AVRISPSMD" x="5.52" y="13.64" rot="R180"/>
 <element name="U$2" library="fabAca" package="2-SMD-5X3MM" value="CRYSTAL" x="20.76" y="22.53" rot="R180"/>
 <element name="U$3" library="fabAca" package="1X06SMD" value="FTDI-SMD-HEADER" x="25.24" y="11.24" rot="R180"/>
@@ -561,10 +559,10 @@ design rules under a new name.</description>
 <contactref element="R3" pad="1"/>
 <contactref element="U$1" pad="6"/>
 <polygon width="0.254" layer="1">
-<vertex x="-0.77" y="-0.48"/>
-<vertex x="-0.77" y="30.31"/>
-<vertex x="28.68" y="30.17"/>
-<vertex x="28.68" y="-0.62"/>
+<vertex x="0" y="0"/>
+<vertex x="0" y="30.21"/>
+<vertex x="28.79" y="30.21"/>
+<vertex x="28.79" y="0"/>
 </polygon>
 </signal>
 <signal name="VCC">
