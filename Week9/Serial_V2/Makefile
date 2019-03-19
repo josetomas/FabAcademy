@@ -1,7 +1,7 @@
-PROJECT=Serial_V2
+PROJECT=Serial_V2 #Project name
 SOURCES=$(PROJECT).c
 MMCU=attiny44
-F_CPU = 20000000
+F_CPU = 20000000 #Clock of the microcontroller 
 
 CFLAGS=-mmcu=$(MMCU) -Wall -Os -DF_CPU=$(F_CPU)
 
@@ -14,7 +14,7 @@ $(PROJECT).out: $(SOURCES)
  
 program-bsd: $(PROJECT).hex
 	avrdude -p t44 -c bsd -U flash:w:$(PROJECT).c.hex
-
+#choose the board you are going to program, in the terminal type Makefile (baord). Example: Makefile program-usbtiny 
 program-dasa: $(PROJECT).hex
 	avrdude -p t44 -P /dev/ttyUSB0 -c dasa -U flash:w:$(PROJECT).c.hex
 

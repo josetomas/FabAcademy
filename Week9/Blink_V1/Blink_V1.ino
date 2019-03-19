@@ -1,21 +1,28 @@
-#include <avr/io.h>
-#include <avr/delay.h>
-int main (void)
-{
-DDRA = DDRA | B11110111;
-DDRB = 0xFF;
-while(1) {
-if (!(PINA & (1<<PA3))) {
-  PORTB |=(1<<PB2); //PORTx |=(the value<<number positions)
-  _delay_ms (250); 
-  PORTB &= ~(1<<PB2); 
-  _delay_ms (250);
+int Led1=2;
+int Led2=7;
+int Led3=8;
+int Button=3;
+
+void setup() {
+  pinMode(Led1, OUTPUT);
+  pinMode(Led2, OUTPUT);
+  pinMode(Led3, OUTPUT);
+  pinMode(Button, INPUT);
+  
 }
-  else {
-    PORTA |= (1 << PA2);
-  _delay_ms (250); 
-  PORTA &= ~(1<<PA2); 
-  _delay_ms (250);
+
+
+void loop() {
+  if (digitalRead(Button)==0){
+  digitalWrite(Led3, HIGH);  
+  delay(500);         
+  digitalWrite(Led3, LOW);
+  delay(500); 
   }
-};
+  else{
+  digitalWrite(Led2, HIGH);
+  delay(500);
+  digitalWrite(Led2, LOW);
+  delay(500);
+  }
 }
