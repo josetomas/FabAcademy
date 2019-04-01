@@ -1,20 +1,3 @@
-//
-// hello.load.45.c
-//
-// step response loading hello-world
-//    9600 baud FTDI interface
-//
-// Neil Gershenfeld
-// 10/27/10
-//
-// (c) Massachusetts Institute of Technology 2010
-// This work may be reproduced, modified, distributed,
-// performed, and displayed for any purpose. Copyright is
-// retained and must be preserved. The work is provided
-// as is; no warranty is provided, and users accept all 
-// liability.
-//
-
 #include <avr/io.h>
 #include <util/delay.h>
 
@@ -37,7 +20,7 @@
 #define serial_pin_out (1 << PB2)
 #define charge_port PORTB
 #define charge_direction DDRB
-#define charge_pin (1 << PB4)
+#define charge_pin (1 << PB3)
 
 void put_char(volatile unsigned char *port, unsigned char pin, char txchar) {
    //
@@ -161,7 +144,7 @@ int main(void) {
       //
       up_lo = ADCL;
       up_hi = ADCH;
-      put_char(&serial_port, serial_pin_out, up_lo);
+      put_char(&serial_port, serial_pin_out, 'c');
       char_delay();
       //put_char(&serial_port, serial_pin_out, up_hi);
       //mchar_delay();
@@ -256,7 +239,7 @@ int main(void) {
       //
       // initiate conversion
       //
-      ADCSRA |= (1 << ADSC);
+      ADCSRA |= (1 << ADSC);// Write 1 on ADSC, initiate conversion
       //
       // wait for completion
       //
@@ -287,17 +270,5 @@ int main(void) {
       //
       down_lo = ADCL;
       down_hi = ADCH;
-
-      //
-      // send result
-      //
-      /*put_char(&serial_port, serial_pin_out, up_lo);
-      char_delay();
-      put_char(&serial_port, serial_pin_out, up_hi);
-      char_delay();
-      put_char(&serial_port, serial_pin_out, down_lo);
-      char_delay();
-      put_char(&serial_port, serial_pin_out, down_hi);
-      char_delay();*/
       }
    }
