@@ -124,8 +124,12 @@ while(1){
    int x = 256*up_hi+up_lo;
    int y=256*down_hi+down_lo;
    int z= x-y; 
-   if (z>500){
-      put_char(&serial_port, serial_pin_out, 'c');
+   if (z>200){
+      put_char(&serial_port, serial_pin_out,'s');
+      char_delay();
+   }
+   else{
+      put_char(&serial_port, serial_pin_out,'n');
       char_delay();
    }
       
