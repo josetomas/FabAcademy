@@ -37,7 +37,7 @@
 #define serial_pin_out (1 << PB2)
 #define charge_port PORTB
 #define charge_direction DDRB
-#define charge_pin (1 << PB3)
+#define charge_pin (1 << PB4)
 
 void put_char(volatile unsigned char *port, unsigned char pin, char txchar) {
    //

@@ -415,6 +415,15 @@ Metric Code Size 3216</description>
 <text x="-1.778" y="1.27" size="1.016" layer="25" ratio="15">&gt;NAME</text>
 <text x="-1.778" y="-2.286" size="1.016" layer="27" ratio="15">&gt;VALUE</text>
 </package>
+<package name="2X02SMD">
+<smd name="1" x="-2.54" y="1.27" dx="2.54" dy="1.27" layer="1"/>
+<smd name="3" x="-2.54" y="-1.27" dx="2.54" dy="1.27" layer="1"/>
+<smd name="2" x="2.92" y="1.27" dx="2.54" dy="1.27" layer="1"/>
+<smd name="4" x="2.92" y="-1.27" dx="2.54" dy="1.27" layer="1"/>
+<text x="-5.08" y="1.27" size="1.27" layer="27">1</text>
+<text x="-3.81" y="2.54" size="1.27" layer="21">&gt;NAME</text>
+<text x="-3.81" y="-3.81" size="1.27" layer="21">&gt;VALUE</text>
+</package>
 </packages>
 <symbols>
 <symbol name="ATTINY24/44/84">
@@ -497,6 +506,18 @@ Metric Code Size 3216</description>
 <text x="-1.27" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
 <pin name="1" x="-2.54" y="0" visible="off" length="short" direction="pas" swaplevel="1"/>
 <pin name="2" x="5.08" y="0" visible="off" length="short" direction="pas" swaplevel="1" rot="R180"/>
+</symbol>
+<symbol name="PINH2X2">
+<wire x1="-8.89" y1="-2.54" x2="6.35" y2="-2.54" width="0.4064" layer="94"/>
+<wire x1="6.35" y1="-2.54" x2="6.35" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="6.35" y1="5.08" x2="-8.89" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="-8.89" y1="5.08" x2="-8.89" y2="-2.54" width="0.4064" layer="94"/>
+<text x="-8.89" y="5.715" size="1.778" layer="95">&gt;NAME</text>
+<text x="-8.89" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="1" x="-5.08" y="2.54" visible="pad" length="short" direction="pas" function="dot"/>
+<pin name="2" x="2.54" y="2.54" visible="pad" length="short" direction="pas" function="dot" rot="R180"/>
+<pin name="3" x="-5.08" y="0" visible="pad" length="short" direction="pas" function="dot"/>
+<pin name="4" x="2.54" y="0" visible="pad" length="short" direction="pas" function="dot" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -694,6 +715,24 @@ Variants with postfix FAB are widened to allow the routing of internal traces</d
 </device>
 </devices>
 </deviceset>
+<deviceset name="PINHD-2X2-SMD">
+<gates>
+<gate name="G$1" symbol="PINH2X2" x="2.54" y="0"/>
+</gates>
+<devices>
+<device name="" package="2X02SMD">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+<connect gate="G$1" pin="3" pad="3"/>
+<connect gate="G$1" pin="4" pad="4"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
 </devicesets>
 </library>
 <library name="supply1" urn="urn:adsk.eagle:library:371">
@@ -786,6 +825,7 @@ Variants with postfix FAB are widened to allow the routing of internal traces</d
 <part name="X_4" library="ngspice-simulation" library_urn="urn:adsk.eagle:library:527439" deviceset="GND" device=""/>
 <part name="P+5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
 <part name="C1" library="fab" deviceset="CAP-US" device="1206FAB" value="1uF"/>
+<part name="U$3" library="fab" deviceset="PINHD-2X2-SMD" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -835,6 +875,10 @@ Variants with postfix FAB are widened to allow the routing of internal traces</d
 <instance part="C1" gate="G$1" x="187.68" y="74.12" smashed="yes" rot="R270">
 <attribute name="NAME" x="190.855" y="75.39" size="1.778" layer="95" rot="R270"/>
 <attribute name="VALUE" x="182.6" y="75.39" size="1.778" layer="96" rot="R270"/>
+</instance>
+<instance part="U$3" gate="G$1" x="62.2" y="24.2" smashed="yes">
+<attribute name="NAME" x="53.31" y="29.915" size="1.778" layer="95"/>
+<attribute name="VALUE" x="53.31" y="19.12" size="1.778" layer="96"/>
 </instance>
 </instances>
 <busses>

@@ -134,10 +134,10 @@ int main(void) {
       //
       // send framing
       //
-      put_char(&serial_port, serial_pin_out, 'c');
+      /*put_char(&serial_port, serial_pin_out, 'c');
       char_delay();
       put_char(&serial_port, serial_pin_out, 'n');
-      char_delay();
+      char_delay();*/
       //put_char(&serial_port, serial_pin_out, 3);
       //char_delay();
       //put_char(&serial_port, serial_pin_out, 4);
