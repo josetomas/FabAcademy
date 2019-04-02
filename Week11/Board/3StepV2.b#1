@@ -456,9 +456,9 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="C1" library="fab" package="C1206FAB" value="1uF" x="24.508459375" y="27.84094375" smashed="yes">
-<attribute name="NAME" x="22.730459375" y="29.11094375" size="1.016" layer="25" ratio="15"/>
-<attribute name="VALUE" x="22.730459375" y="25.55494375" size="1.016" layer="27" ratio="15"/>
+<element name="C1" library="fab" package="C1206FAB" value="1uF" x="21.6154" y="28.849321875" smashed="yes">
+<attribute name="NAME" x="19.8374" y="30.119321875" size="1.016" layer="25" ratio="15"/>
+<attribute name="VALUE" x="19.8374" y="26.563321875" size="1.016" layer="27" ratio="15"/>
 </element>
 <element name="IC1" library="fab" package="SOIC14" value="ATTINY44-SSU" x="21.6154" y="19.959321875" smashed="yes" rot="R270">
 <attribute name="NAME" x="19.5834" y="24.467821875" size="1.27" layer="25" ratio="10"/>
@@ -553,14 +553,14 @@ design rules under a new name.</description>
 <wire x1="24.4754" y1="23.779321875" x2="24.2189" y2="23.769321875" width="0.4" layer="1"/>
 <wire x1="38.0754" y1="24.979321875" x2="38.1254" y2="25.039321875" width="0.4" layer="1"/>
 <wire x1="23.2754" y1="32.579321875" x2="23.2754" y2="30.979321875" width="0.4" layer="1"/>
-<wire x1="25.83141875" y1="32.579321875" x2="26.159459375" y2="27.84094375" width="0.4" layer="1"/>
+<wire x1="23.2754" y1="30.979321875" x2="23.2754" y2="28.979321875" width="0.4" layer="1"/>
+<wire x1="23.2754" y1="28.979321875" x2="23.2664" y2="28.849321875" width="0.4" layer="1"/>
 <wire x1="18.4754" y1="32.179321875" x2="14.0754" y2="36.579321875" width="0.4" layer="1"/>
 <wire x1="18.4754" y1="31.379321875" x2="18.4754" y2="32.179321875" width="0.4" layer="1"/>
 <wire x1="18.8754" y1="30.979321875" x2="18.4754" y2="31.379321875" width="0.4" layer="1"/>
 <wire x1="23.2754" y1="30.979321875" x2="18.8754" y2="30.979321875" width="0.4" layer="1"/>
 <wire x1="14.0754" y1="36.579321875" x2="13.9954" y2="36.850321875" width="0.4" layer="1"/>
-<wire x1="23.2754" y1="32.579321875" x2="25.83141875" y2="32.579321875" width="0.4" layer="1"/>
-<wire x1="25.83141875" y1="32.579321875" x2="28.4754" y2="32.579321875" width="0.4" layer="1"/>
+<wire x1="23.2754" y1="32.579321875" x2="28.4754" y2="32.579321875" width="0.4" layer="1"/>
 <wire x1="28.4754" y1="32.579321875" x2="28.8554" y2="32.659321875" width="0.4" layer="1"/>
 <wire x1="23.2754" y1="32.579321875" x2="23.2664" y2="32.659321875" width="0.4" layer="1"/>
 <wire x1="36.4754" y1="33.379321875" x2="36.4754" y2="24.979321875" width="0.4" layer="1"/>
@@ -594,8 +594,7 @@ design rules under a new name.</description>
 <contactref element="R1" pad="2"/>
 <contactref element="R4" pad="2"/>
 <contactref element="R3" pad="2"/>
-<wire x1="19.6754" y1="24.179321875" x2="19.6754" y2="24.868084375" width="0.4" layer="1"/>
-<wire x1="19.6754" y1="24.868084375" x2="19.6754" y2="28.579321875" width="0.4" layer="1"/>
+<wire x1="19.6754" y1="24.179321875" x2="19.6754" y2="28.579321875" width="0.4" layer="1"/>
 <wire x1="19.2754" y1="23.779321875" x2="19.6754" y2="24.179321875" width="0.4" layer="1"/>
 <wire x1="19.2754" y1="23.779321875" x2="19.0119" y2="23.769321875" width="0.4" layer="1"/>
 <wire x1="10.8754" y1="8.579321875" x2="10.8754" y2="7.379321875" width="0.4" layer="1"/>
@@ -628,9 +627,9 @@ design rules under a new name.</description>
 <wire x1="38.4754" y1="20.179321875" x2="38.1254" y2="19.959321875" width="0.4" layer="1"/>
 <wire x1="17.6754" y1="37.779321875" x2="17.4244" y2="37.739321875" width="0.4" layer="1"/>
 <wire x1="14.0754" y1="28.579321875" x2="19.6754" y2="28.579321875" width="0.4" layer="1"/>
-<wire x1="19.6754" y1="24.868084375" x2="22.857459375" y2="27.84094375" width="0.4" layer="1"/>
+<wire x1="19.6754" y1="28.579321875" x2="19.9644" y2="28.849321875" width="0.4" layer="1"/>
 <wire x1="14.0754" y1="28.579321875" x2="13.9954" y2="28.468321875" width="0.4" layer="1"/>
-<wire x1="22.857459375" y1="27.84094375" x2="28.8554" y2="27.579321875" width="0" layer="19" extent="1-1"/>
+<wire x1="19.9644" y1="28.849321875" x2="28.8554" y2="27.579321875" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RST">
 <contactref element="IC1" pad="4"/>

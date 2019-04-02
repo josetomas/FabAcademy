@@ -1,13 +1,13 @@
 //
-// hello.load.45.c
+// hello.txrx.45.c
 //
-// step response loading hello-world
+// step response transmit-receive hello-world
 //    9600 baud FTDI interface
 //
 // Neil Gershenfeld
-// 10/27/10
+// 11/6/11
 //
-// (c) Massachusetts Institute of Technology 2010
+// (c) Massachusetts Institute of Technology 2011
 // This work may be reproduced, modified, distributed,
 // performed, and displayed for any purpose. Copyright is
 // retained and must be preserved. The work is provided
@@ -26,18 +26,16 @@
 #define bit_delay_time 102 // bit delay for 9600 with overhead
 #define bit_delay() _delay_us(bit_delay_time) // RS232 bit delay
 #define half_bit_delay() _delay_us(bit_delay_time/2) // RS232 half bit delay
-#define charge_delay_1() _delay_us(1) // charge delay 1
-#define charge_delay_2() _delay_us(10) // charge delay 2
-#define charge_delay_3() _delay_us(100) // charge delay 3
 #define settle_delay() _delay_us(100) // settle delay
 #define char_delay() _delay_ms(10) // char delay
+#define nloop 100 // loops to accumulate
 
 #define serial_port PORTB
 #define serial_direction DDRB
 #define serial_pin_out (1 << PB2)
-#define charge_port PORTB
-#define charge_direction DDRB
-#define charge_pin (1 << PB3)
+#define transmit_port PORTB
+#define transmit_direction DDRB
+#define transmit_pin (1 << PB4)
 
 void put_char(volatile unsigned char *port, unsigned char pin, char txchar) {
    //
@@ -106,7 +104,8 @@ int main(void) {
    //
    // main
    //
-   static unsigned char up_lo,up_hi,down_lo,down_hi;
+   static unsigned char count;
+   static uint16_t up,down;
    //
    // set clock divider to /1
    //
@@ -117,20 +116,63 @@ int main(void) {
    //
    set(serial_port, serial_pin_out);
    output(serial_direction, serial_pin_out);
-   clear(charge_port, charge_pin);
-   output(charge_direction, charge_pin);
+   clear(transmit_port, transmit_pin);
+   output(transmit_direction, transmit_pin);
    //
    // init A/D
    //
    ADMUX = (0 << REFS2) | (0 << REFS1) | (0 << REFS0) // Vcc ref
       | (0 << ADLAR) // right adjust
-      | (0 << MUX3) | (0 << MUX2) | (1 << MUX1) | (0 << MUX0); // PB4
+      | (0 << MUX3) | (0 << MUX2) | (1 << MUX1) | (1 << MUX0); // PB3
    ADCSRA = (1 << ADEN) // enable
       | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); // prescaler /128
    //
    // main loop
    //
    while (1) {
+      //
+      // accumulate
+      //
+      up = 0;
+      down = 0;
+      for (count = 0; count < nloop; ++count) { 
+         //
+         // settle, charge
+         //
+         settle_delay();
+         set(transmit_port, transmit_pin);
+         //
+         // initiate conversion
+         //
+         ADCSRA |= (1 << ADSC);
+         //
+         // wait for completion
+         //
+         while (ADCSRA & (1 << ADSC))
+            ;
+         //
+         // save result
+         //
+         up += ADC;
+         //
+         // settle, discharge
+         //
+         settle_delay();
+         clear(transmit_port, transmit_pin);
+         //
+         // initiate conversion
+         //
+         ADCSRA |= (1 << ADSC);
+         //
+         // wait for completion
+         //
+         while (ADCSRA & (1 << ADSC))
+            ;
+         //
+         // save result
+         //
+         down += ADC;
+         }
       //
       // send framing
       //
@@ -142,157 +184,15 @@ int main(void) {
       char_delay();
       put_char(&serial_port, serial_pin_out, 4);
       //
-      // settle, charge, and wait 1
-      //
-      settle_delay();
-      set(charge_port, charge_pin);
-      charge_delay_1();
-      //
-      // initiate conversion
-      //
-      ADCSRA |= (1 << ADSC);
-      //
-      // wait for completion
-      //
-      while (ADCSRA & (1 << ADSC))
-         ;
-      //
-      // save result
-      //
-      up_lo = ADCL;
-      up_hi = ADCH;
-      //
-      // settle, discharge, and wait 1
-      //
-      settle_delay();
-      clear(charge_port, charge_pin);
-      charge_delay_1();
-      //
-      // initiate conversion
-      //
-      ADCSRA |= (1 << ADSC);
-      //
-      // wait for completion
-      //
-      while (ADCSRA & (1 << ADSC))
-         ;
-      //
-      // save result
-      //
-      down_lo = ADCL;
-      down_hi = ADCH;
-      //
       // send result
       //
-      put_char(&serial_port, serial_pin_out, up_lo);
+      put_char(&serial_port, serial_pin_out, (up & 255));
       char_delay();
-      put_char(&serial_port, serial_pin_out, up_hi);
+      put_char(&serial_port, serial_pin_out, ((up >> 8) & 255));
       char_delay();
-      put_char(&serial_port, serial_pin_out, down_lo);
+      put_char(&serial_port, serial_pin_out, (down & 255));
       char_delay();
-      put_char(&serial_port, serial_pin_out, down_hi);
-      char_delay();
-      //
-      // settle, charge, and wait 2
-      //
-      settle_delay();
-      set(charge_port, charge_pin);
-      charge_delay_2();
-      //
-      // initiate conversion
-      //
-      ADCSRA |= (1 << ADSC);
-      //
-      // wait for completion
-      //
-      while (ADCSRA & (1 << ADSC))
-         ;
-      //
-      // save result
-      //
-      up_lo = ADCL;
-      up_hi = ADCH;
-      //
-      // settle, discharge, and wait 2
-      //
-      settle_delay();
-      clear(charge_port, charge_pin);
-      charge_delay_2();
-      //
-      // initiate conversion
-      //
-      ADCSRA |= (1 << ADSC);
-      //
-      // wait for completion
-      //
-      while (ADCSRA & (1 << ADSC))
-         ;
-      //
-      // save result
-      //
-      down_lo = ADCL;
-      down_hi = ADCH;
-      //
-      // send result
-      //
-      put_char(&serial_port, serial_pin_out, up_lo);
-      char_delay();
-      put_char(&serial_port, serial_pin_out, up_hi);
-      char_delay();
-      put_char(&serial_port, serial_pin_out, down_lo);
-      char_delay();
-      put_char(&serial_port, serial_pin_out, down_hi);
-      char_delay();
-      //
-      // settle, charge, and wait 3
-      //
-      settle_delay();
-      set(charge_port, charge_pin);
-      charge_delay_3();
-      //
-      // initiate conversion
-      //
-      ADCSRA |= (1 << ADSC);
-      //
-      // wait for completion
-      //
-      while (ADCSRA & (1 << ADSC))
-         ;
-      //
-      // save result
-      //
-      up_lo = ADCL;
-      up_hi = ADCH;
-      //
-      // settle, discharge, and wait 3
-      //
-      settle_delay();
-      clear(charge_port, charge_pin);
-      charge_delay_3();
-      //
-      // initiate conversion
-      //
-      ADCSRA |= (1 << ADSC);
-      //
-      // wait for completion
-      //
-      while (ADCSRA & (1 << ADSC))
-         ;
-      //
-      // save result
-      //
-      down_lo = ADCL;
-      down_hi = ADCH;
-      //
-      // send result
-      //
-      put_char(&serial_port, serial_pin_out, up_lo);
-      char_delay();
-      put_char(&serial_port, serial_pin_out, up_hi);
-      char_delay();
-      put_char(&serial_port, serial_pin_out, down_lo);
-      char_delay();
-      put_char(&serial_port, serial_pin_out, down_hi);
+      put_char(&serial_port, serial_pin_out, ((down >> 8) & 255));
       char_delay();
       }
    }
