@@ -1,4 +1,4 @@
-PROJECT=V3#Project name
+PROJECT=V4#Project name
 SOURCES=$(PROJECT).c
 MMCU=attiny44
 F_CPU = 8000000 #Clock of the microcontroller 

@@ -20,10 +20,41 @@
 #define serial_pin_out (1 << PA1)
 #define charge_port PORTA
 #define charge_direction DDRA
-#define charge_pin (1 << PA7)
+#define charge_pin1 (1 << PA7)
+#define charge_pin2 (1 << PA5)
+#define charge_pin3 (1<<PA4)
 
-#define admux 0b00000011 //REFS1,REFS0,ADLAR,REFS2,MUX3,MUX2,MUX1,MUX0
 
+#define Sens1 0b00000011 //TX1@PA3
+#define Sens2 0b00000010 //TX2@PA2
+#define Sens3 0b00000000 //TX3@PA0
+
+int Read_Sensor(uint8_t bit, unsigned char pin, unsigned char port){
+	ADMUX |= bit;
+	static unsigned char up_lo, up_hi, down_lo, down_hi;
+	settle_delay();
+   set(port, pin);
+   charge_delay_1();
+	ADCSRA |= (1<<ADSC);
+	while (ADCSRA & (1<<ADSC))
+      ;
+   up_lo = ADCL;
+   up_hi = ADCH;
+   settle_delay();
+   clear(port, pin);
+   charge_delay_1();
+   ADCSRA |= (1<<ADSC);
+   while (ADCSRA & (1<<ADSC))
+      ;
+   down_lo = ADCL;
+   down_hi = ADCH;
+
+   int x = 256*up_hi+up_lo;
+   int y=256*down_hi+down_lo;
+   int z= x; 
+   return z;
+
+}
 
 void put_char(volatile unsigned char *port, unsigned char pin, char txchar) {
    //
@@ -87,58 +118,45 @@ void put_char(volatile unsigned char *port, unsigned char pin, char txchar) {
    //
    bit_delay();
    }
+
 int main (void){
  // Define clock devider
  CLKPR = (1<<CLKPCE);
  CLKPR = (0 << CLKPS3) | (0 << CLKPS2) | (0 << CLKPS1) | (0 << CLKPS0);
- // Define ADMUX Register
- ADMUX = admux;
+
  //Set prescaler to 128
  ADCSRA = (1 << ADEN); // enable
  ADCSRA = (1<<ADEN)|(1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0);
    // initialize output pins
    set(serial_port, serial_pin_out);
    output(serial_direction, serial_pin_out);
-   clear(charge_port, charge_pin);
-   output(charge_direction, charge_pin);
 
    DDRB = 0xFF;
-
- static unsigned char up_lo, up_hi, down_lo, down_hi;
-
+   output(charge_direction, charge_pin1);
+   output(charge_direction, charge_pin2);
+   output(charge_direction, charge_pin3);
+ 
 while(1){
-   settle_delay();
-   set(charge_port, charge_pin);
-   charge_delay_1();
-	ADCSRA |= (1<<ADSC);
-	while (ADCSRA & (1<<ADSC))
-      ;
-   up_lo = ADCL;
-   up_hi = ADCH;
-   settle_delay();
-   clear(charge_port, charge_pin);
-   charge_delay_1();
-   ADCSRA |= (1<<ADSC);
-   while (ADCSRA & (1<<ADSC))
-      ;
-   down_lo = ADCL;
-   down_hi = ADCH;
-
-   int x = 256*up_hi+up_lo;
-   int y=256*down_hi+down_lo;
-   int z= x-y; 
-   if (z>250){
-      PORTB |=(1<<PB0); //PORTx |=(the value<<number positions)
-      _delay_ms (100); 
-      PORTB &= ~(1<<PB0); 
-      _delay_ms (100);
+   int z= Read_Sensor(Sens3,  charge_pin3, charge_port);
+   if (z>200){
+      PORTB &= ~(1<<PB2); //PORTx |=(the value<<number positions)
    }
    else{
-      PORTB |=(1<<PB1); //PORTx |=(the value<<number positions)
-      _delay_ms (100); 
-      PORTB &= ~(1<<PB1); 
-      _delay_ms (100);
+      PORTB |= (1<<PB2); //PORTx |=(the value<<number positions)
    }
-      
+   int x= Read_Sensor(Sens2,  charge_pin2, charge_port);
+   if (x>200){
+      PORTB &= ~(1<<PB1); //PORTx |=(the value<<number positions)
+   }
+   else{
+      PORTB |= (1<<PB1); //PORTx |=(the value<<number positions)
+   }
+	int y= Read_Sensor(Sens1,  charge_pin1, charge_port);
+   if (y>200){
+      PORTB &= ~(1<<PB0); //PORTx |=(the value<<number positions)
+   }
+   else{
+      PORTB |= (1<<PB0); //PORTx |=(the value<<number positions)
+   }
 }
 }
