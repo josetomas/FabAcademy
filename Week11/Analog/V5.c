@@ -28,11 +28,15 @@
 #define Sens1 0b00000011 //TX1@PA3
 #define Sens2 0b00000010 //TX2@PA2
 #define Sens3 0b00000000 //TX3@PA0
-#define trig 900
+#define trig 970
+const int nloop=3;
 
 int Read_Sensor(uint8_t bit, unsigned char pin, unsigned char port){
 	ADMUX = bit;
 	static unsigned char up_lo, up_hi, down_lo, down_hi;
+	int cont,i; 
+	int sum=0;
+	for  (cont=0;cont< nloop; cont++){
 	settle_delay();
    set(port, pin);
    charge_delay_1();
@@ -52,8 +56,11 @@ int Read_Sensor(uint8_t bit, unsigned char pin, unsigned char port){
 
    int x = 256*up_hi+up_lo;
    int y=256*down_hi+down_lo;
-   int z= x+(1023-y); 
-   return z;
+   int z= x+(1023-y);
+   sum+=z;
+	} 
+	sum=sum/nloop;
+   return sum;
 
 }
 
@@ -138,21 +145,21 @@ int main (void){
    output(charge_direction, charge_pin3);
  
 while(1){
-   int z= Read_Sensor(Sens2,  charge_pin2, charge_port);
+   int z= Read_Sensor(Sens2,  charge_pin2, charge_port);//abajo
    if (z>trig){
       PORTB &= ~(1<<PB2); //PORTx |=(the value<<number positions)
    }
    else{
       PORTB |= (1<<PB2); //PORTx |=(the value<<number positions)
    }
-   int x= Read_Sensor(Sens3,  charge_pin3, charge_port);
-   if (x>trig){
+   int x= Read_Sensor(Sens3,  charge_pin3, charge_port);//medio
+   if (x>trig-10){
       PORTB &= ~(1<<PB1); //PORTx |=(the value<<number positions)
    }
    else{
       PORTB |= (1<<PB1); //PORTx |=(the value<<number positions)
    }
-	int y= Read_Sensor(Sens1,  charge_pin1, charge_port);
+	int y= Read_Sensor(Sens1,  charge_pin1, charge_port);//arriba
    if (y>trig){
       PORTB &= ~(1<<PB0); //PORTx |=(the value<<number positions)
    }
