@@ -1,0 +1,9 @@
+Sources for Bricoleur Clay Extruder, Open Source
+
+Ceramic delta 3D printer (https://www.thingiverse.com/thing:147055)
+Delta 3D Printer for Ceramics (https://www.thingiverse.com/thing:977275)
+Claystruder 1.1 (https://www.thingiverse.com/thing:3604)
+Claystruder 1.5 (https://www.thingiverse.com/thing:21788)
+Claystruder 2, Auger Paste Extruder (https://www.thingiverse.com/thing:28018)
+Prusa i3 Laser Cut Frame and Braces (https://www.thingiverse.com/thing:40465)
+Universal Paste Extruder for 3D printers (https://www.thingiverse.com/thing:20733)
