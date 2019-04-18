@@ -1,8 +1,8 @@
 //
 //
-// hello.stepper.44.half.c
+// hello.stepper.44.full.c
 //
-// half stepping hello-world
+// full stepping hello-world
 //
 // Neil Gershenfeld
 // 11/14/10
@@ -32,55 +32,10 @@
 #define orange (1 << PA2) // "
 #define on_delay() _delay_us(50) // PWM on time
 #define off_delay() _delay_us(10) // PWM off time
-#define PWM_count 100 // number of PWM cycles
+#define PWM_count 200 // number of PWM cycles
 
 static uint8_t count;
 
-//
-// yellow PWM pulse
-//
-void pulse_yellow() {
-   for (count = 0; count < PWM_count; ++count) {
-      set(MOSFET_port, yellow);
-      on_delay();
-      clear(MOSFET_port, yellow);
-      off_delay();
-      }
-   }
-//
-// black PWM pulse
-//
-void pulse_black() {
-   for (count = 0; count < PWM_count; ++count) {
-      set(MOSFET_port, black);
-      on_delay();
-      clear(MOSFET_port, black);
-      off_delay();
-      }
-   }
-//
-// orange PWM pulse
-//
-void pulse_orange() {
-   for (count = 0; count < PWM_count; ++count) {
-      set(MOSFET_port, orange);
-      on_delay();
-      clear(MOSFET_port, orange);
-      off_delay();
-      }
-   }
-
-//
-// brown PWM pulse
-//
-void pulse_brown() {
-   for (count = 0; count < PWM_count; ++count) {
-      set(MOSFET_port, brown);
-      on_delay();
-      clear(MOSFET_port, brown);
-      off_delay();
-      }
-   }
 //
 // yellow, brown PWM pulse
 //
@@ -138,25 +93,17 @@ void pulse_orange_black() {
 //
 void step_cw() {
    pulse_yellow_brown();
-   pulse_yellow();
    pulse_yellow_black();
-   pulse_black();
    pulse_orange_black();
-   pulse_orange();
    pulse_orange_brown();
-   pulse_brown();
    }
 //
 // counter-clockwise step
 //
 void step_ccw() {
-   pulse_brown();
    pulse_orange_brown();
-   pulse_orange();
    pulse_orange_black();
-   pulse_black();
    pulse_yellow_black();
-   pulse_yellow();
    pulse_yellow_brown();
    }
 
@@ -188,14 +135,14 @@ int main(void) {
       for (i = 0; i < 10; ++i) {
          for (j = 0; j < i; ++j)
             step_cw();
-         for (j = 0; j < i; ++j)
-            step_ccw();
+         /*for (j = 0; j < i; ++j)
+            step_ccw();*/
          }
-      for (i = 10; i > 0; --i) {
+      /*for (i = 10; i > 0; --i) {
          for (j = 0; j < i; ++j)
             step_cw();
          for (j = 0; j < i; ++j)
             step_ccw();
-         }
+         }*/
       }
    }
