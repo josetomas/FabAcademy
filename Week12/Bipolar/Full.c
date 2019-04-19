@@ -30,7 +30,7 @@
 #define A1 (1 << PA1) // "
 #define B2 (1 << PA3) // "
 #define B1 (1 << PA4) // "
-#define on_delay() _delay_us(25) // PWM on time
+#define on_delay() _delay_us(30) // PWM on time
 #define off_delay() _delay_us(5) // PWM off time
 #define PWM_count 100 // number of PWM cycles
 #define step_count 20 // number of steps
