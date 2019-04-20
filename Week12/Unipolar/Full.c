@@ -134,7 +134,7 @@ int main(void) {
    while (1) {
       for (i = 0; i < 10; ++i) {
          for (j = 0; j < i; ++j)
-            step_cw();
+            step_ccw();
          /*for (j = 0; j < i; ++j)
             step_ccw();*/
          }
