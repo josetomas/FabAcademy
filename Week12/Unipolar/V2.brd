@@ -6,9 +6,9 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="mil" unit="mm" style="lines" multiple="1" display="no" altdistance="5" altunitdist="mil" altunit="mil"/>
+<grid distance="0.1" unitdist="mil" unit="mil" style="lines" multiple="1" display="no" altdistance="5" altunitdist="mil" altunit="mil"/>
 <layers>
-<layer number="1" name="Top" color="4" fill="1" visible="no" active="yes"/>
+<layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="16" fill="1" visible="no" active="no"/>
 <layer number="3" name="Route3" color="17" fill="1" visible="no" active="no"/>
 <layer number="4" name="Route4" color="18" fill="1" visible="no" active="no"/>
@@ -26,19 +26,19 @@
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="17" name="Pads" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="18" name="Vias" color="2" fill="1" visible="yes" active="yes"/>
-<layer number="19" name="Unrouted" color="6" fill="1" visible="no" active="yes"/>
+<layer number="19" name="Unrouted" color="6" fill="1" visible="yes" active="yes"/>
 <layer number="20" name="Dimension" color="24" fill="1" visible="yes" active="yes"/>
-<layer number="21" name="tPlace" color="7" fill="1" visible="no" active="yes"/>
+<layer number="21" name="tPlace" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="22" name="bPlace" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="23" name="tOrigins" color="15" fill="1" visible="no" active="yes"/>
+<layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
+<layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
 <layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
-<layer number="31" name="tCream" color="7" fill="4" visible="no" active="yes"/>
+<layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="no" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="no" active="yes"/>
 <layer number="34" name="bFinish" color="6" fill="6" visible="no" active="yes"/>
@@ -58,7 +58,7 @@
 <layer number="48" name="Document" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="49" name="Reference" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="50" name="dxf" color="7" fill="1" visible="no" active="no"/>
-<layer number="51" name="tDocu" color="7" fill="1" visible="no" active="yes"/>
+<layer number="51" name="tDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="52" name="bDocu" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="53" name="tGND_GNDA" color="7" fill="9" visible="no" active="no"/>
 <layer number="54" name="bGND_GNDA" color="1" fill="9" visible="no" active="no"/>
@@ -494,9 +494,9 @@ design rules under a new name.</description>
 <attribute name="NAME" x="26.4439375" y="6.57098125" size="1.27" layer="25" rot="R90"/>
 <attribute name="VALUE" x="35.3339375" y="6.57098125" size="1.27" layer="27" rot="R90"/>
 </element>
-<element name="R2" library="fab" package="R1206FAB" value="10K" x="10.86611875" y="26.91891875" smashed="yes">
-<attribute name="NAME" x="9.08811875" y="28.18891875" size="1.016" layer="25" ratio="15"/>
-<attribute name="VALUE" x="9.08811875" y="24.63291875" size="1.016" layer="27" ratio="15"/>
+<element name="R2" library="fab" package="R1206FAB" value="10K" x="10.754359375" y="26.9392375" smashed="yes">
+<attribute name="NAME" x="8.976359375" y="28.2092375" size="1.016" layer="25" ratio="15"/>
+<attribute name="VALUE" x="8.976359375" y="24.6532375" size="1.016" layer="27" ratio="15"/>
 </element>
 <element name="T1" library="fab" package="SOT-23" value="" x="25.1561625" y="19.052540625" smashed="yes" rot="R90">
 <attribute name="NAME" x="21.8541625" y="17.655540625" size="1.27" layer="25" ratio="10" rot="R90"/>
@@ -595,17 +595,17 @@ design rules under a new name.</description>
 <wire x1="15.1664" y1="23.7898" x2="13.67028125" y2="23.7898" width="0.35" layer="1"/>
 <wire x1="13.67028125" y1="24.208740625" x2="12.6365" y2="24.208740625" width="0.35" layer="1"/>
 <wire x1="12.6365" y1="24.208740625" x2="12.6365" y2="24.13" width="0.35" layer="1"/>
-<wire x1="12.8" y1="26.8" x2="14.8" y2="26.8" width="0.35" layer="1"/>
+<wire x1="12.736575" y1="26.8" x2="14.8" y2="26.8" width="0.35" layer="1"/>
 <wire x1="14.8" y1="26.8" x2="15.0241" y2="26.6065" width="0.35" layer="1"/>
-<wire x1="12.8" y1="26.8" x2="12.51711875" y2="26.91891875" width="0.35" layer="1"/>
-<wire x1="12.4" y1="24.4" x2="12.4" y2="26.8" width="0.35" layer="1"/>
-<wire x1="12.4" y1="26.8" x2="12.51711875" y2="26.91891875" width="0.35" layer="1"/>
+<wire x1="12.736575" y1="26.8" x2="12.405359375" y2="26.9392375" width="0.35" layer="1"/>
+<wire x1="12.4" y1="24.4" x2="12.4" y2="26.933796875" width="0.35" layer="1"/>
+<wire x1="12.4" y1="26.933796875" x2="12.405359375" y2="26.9392375" width="0.35" layer="1"/>
 <wire x1="12.4" y1="24.4" x2="12.6365" y2="24.13" width="0.35" layer="1"/>
 <wire x1="2.8" y1="28.8" x2="2.8" y2="30" width="0.35" layer="1"/>
 <wire x1="6.4" y1="34.4" x2="6.4" y2="33.6" width="0.35" layer="1"/>
 <wire x1="2.8" y1="28.8" x2="2.560134375" y2="28.7985625" width="0.35" layer="1"/>
 <wire x1="6.4" y1="34.4" x2="6.731" y2="34.417" width="0.35" layer="1"/>
-<wire x1="12.4" y1="27.2" x2="12.51711875" y2="26.91891875" width="0.35" layer="1"/>
+<wire x1="12.288240625" y1="27.22031875" x2="12.405359375" y2="26.9392375" width="0.35" layer="1"/>
 <wire x1="2.8" y1="30" x2="6.731" y2="30" width="0.35" layer="1"/>
 <wire x1="6.731" y1="30" x2="6.731" y2="34.417" width="0.35" layer="1"/>
 <contactref element="R1" pad="1"/>
@@ -613,7 +613,7 @@ design rules under a new name.</description>
 <wire x1="9.05001875" y1="29.5021" x2="6.731" y2="29.5021" width="0.35" layer="1"/>
 <wire x1="6.731" y1="29.5021" x2="6.731" y2="30" width="0.35" layer="1"/>
 <wire x1="12.35201875" y1="29.5021" x2="12.35201875" y2="26.8" width="0.35" layer="1"/>
-<wire x1="12.35201875" y1="26.8" x2="12.8" y2="26.8" width="0.35" layer="1"/>
+<wire x1="12.35201875" y1="26.8" x2="12.736575" y2="26.8" width="0.35" layer="1"/>
 <wire x1="12.35201875" y1="29.5021" x2="9.05001875" y2="29.5021" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RST">
@@ -624,10 +624,10 @@ design rules under a new name.</description>
 <wire x1="14.292578125" y1="15.5802" x2="14.3664" y2="15.5802" width="0.35" layer="1"/>
 <wire x1="14.3664" y1="15.5802" x2="14.3664" y2="20.32" width="0.35" layer="1"/>
 <wire x1="14.3664" y1="20.32" x2="12.6365" y2="20.32" width="0.35" layer="1"/>
-<wire x1="9.6" y1="22" x2="9.6" y2="26.8" width="0.35" layer="1"/>
+<wire x1="9.6" y1="22" x2="9.6" y2="26.7857875" width="0.35" layer="1"/>
 <wire x1="11.2" y1="20.4" x2="9.6" y2="22" width="0.35" layer="1"/>
 <wire x1="12.4" y1="20.4" x2="11.2" y2="20.4" width="0.35" layer="1"/>
-<wire x1="9.6" y1="26.8" x2="9.21511875" y2="26.91891875" width="0.35" layer="1"/>
+<wire x1="9.6" y1="26.7857875" x2="9.103359375" y2="26.9392375" width="0.35" layer="1"/>
 <wire x1="12.4" y1="20.4" x2="12.6365" y2="20.32" width="0.35" layer="1"/>
 </signal>
 <signal name="SCK">
