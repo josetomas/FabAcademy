@@ -28,13 +28,13 @@
 #define Sens1 0b00000011 //TX1@PA3
 #define Sens2 0b00000010 //TX2@PA2
 #define Sens3 0b00000000 //TX3@PA0
-#define trig 970
+#define trig 100
 const int nloop=3;
 
 int Read_Sensor(uint8_t bit, unsigned char pin, unsigned char port){
 	ADMUX = bit;
 	static unsigned char up_lo, up_hi, down_lo, down_hi;
-	int cont,i; 
+	int cont;
 	int sum=0;
 	for  (cont=0;cont< nloop; cont++){
 	settle_delay();

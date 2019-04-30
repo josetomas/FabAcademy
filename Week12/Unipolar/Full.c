@@ -30,8 +30,8 @@
 #define black (1 << PA0) // "
 #define yellow (1 << PA3) // "
 #define orange (1 << PA2) // "
-#define on_delay() _delay_us(15) // PWM on time
-#define off_delay() _delay_us(5) // PWM off time
+#define on_delay() _delay_us(30) // PWM on time
+#define off_delay() _delay_us(2) // PWM off time
 #define PWM_count 200 // number of PWM cycles
 
 static uint8_t count;
