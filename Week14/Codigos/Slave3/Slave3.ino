@@ -12,7 +12,7 @@ void loop() {
 
 
 void requestEvent() {
-  Wire.write("HelloooOOOooOOOooo "); 
+  Wire.write("Hello "); 
   digitalWrite(7,HIGH);
   delay(100);
   digitalWrite(7,LOW);
