@@ -1,11 +1,11 @@
 //
-// hello.mag.45.c
+// hello.SPU0414HR5H.c
 //
-// Hall effect magnetic sensing hello-world
+// SPU0414HR5H microphone hello-world
 //    9600 baud FTDI interface
 //
-// Neil Gershenfeld 11/3/13
-// (c) Massachusetts Institute of Technology 2013
+// Neil Gershenfeld 11/17/15
+// (c) Massachusetts Institute of Technology 2015
 //
 // This work may be reproduced, modified, distributed,
 // performed, and displayed for any purpose. Copyright is
@@ -26,12 +26,20 @@
 #define bit_delay() _delay_us(bit_delay_time) // RS232 bit delay
 #define half_bit_delay() _delay_us(bit_delay_time/2) // RS232 half bit delay
 #define char_delay() _delay_ms(10) // char delay
+#define serial_port PORTA
+#define serial_direction DDRA
+#define serial_pin_out (1 << PA1)
+#define NPTS 100 // points in buffer
+#define admux 0b10000010
 
-#define serial_port PORTB
-#define serial_direction DDRB
-#define serial_pin_out (1 << PB2)
+#define PWM_port PORTA
+#define PWM_direction DDRA
+#define PWM_pin_1 (1 << PA7)
 
-#define nsamples 100 // number of samples to accumulate
+#define loop_count 30
+
+int trigger = 950;
+int i=0;
 
 void put_char(volatile unsigned char *port, unsigned char pin, char txchar) {
    //
@@ -42,6 +50,8 @@ void put_char(volatile unsigned char *port, unsigned char pin, char txchar) {
    //
    clear(*port,pin);
    bit_delay();
+   clear(PWM_port, PWM_pin_1);
+   output(PWM_direction, PWM_pin_1);
    //
    // unrolled loop to write data bits
    //
@@ -100,8 +110,7 @@ int main(void) {
    //
    // main
    //
-   static uint16_t count;
-   static uint32_t accum;
+   static unsigned char array_lo,array_hi;
    //
    // set clock divider to /1
    //
@@ -115,34 +124,14 @@ int main(void) {
    //
    // init A/D
    //
-   ADMUX = (0 <<REFS2) | (0 << REFS1) | (0 << REFS0) // Vcc ref
-      | (0 << ADLAR) // right adjust
-      | (0 << MUX3) | (0 << MUX2) | (1 << MUX1) | (0 << MUX0); // ADC4
+   ADMUX =  admux;
    ADCSRA = (1 << ADEN) // enable
-      | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0); // prescaler /128
+      | (1 << ADPS2) | (1 << ADPS1) | (0 << ADPS0); // prescaler /64
    //
    // main loop
    //
+      DDRA |= (1 << PA0);   
    while (1) {
-      //
-      // accumulate samples
-      //
-      accum = 0;
-      for (count = 0; count < nsamples; ++count) { 
-         //
-         // initiate conversion
-         //
-         ADCSRA |= (1 << ADSC);
-         //
-         // wait for completion
-         //
-         while (ADCSRA & (1 << ADSC))
-            ;
-         //
-         // add result
-         //
-         accum += ADC;
-         }
       //
       // send framing
       //
@@ -155,13 +144,78 @@ int main(void) {
       put_char(&serial_port, serial_pin_out, 4);
       char_delay();
       //
-      // send result
+      // free-running sample loop
       //
-      put_char(&serial_port, serial_pin_out, (accum & 255));
-      char_delay();
-      put_char(&serial_port, serial_pin_out, ((accum >> 8) & 255));
-      char_delay();
-      put_char(&serial_port, serial_pin_out, ((accum >> 16) & 255));
-      char_delay();
+         //
+         // initiate conversion
+         //
+         ADCSRA |= (1 << ADSC);
+         //
+         // wait for completion
+         //
+         while (ADCSRA & (1 << ADSC))
+            ;
+         //
+         // save result
+         //
+         array_lo = ADCL;
+         array_hi = ADCH;
+         int value = 256*array_hi+array_lo;
+         if (value>trigger){
+            for (i = 0; i < loop_count; ++i) {
+               set(PWM_port,PWM_pin_1);
+               _delay_us(1000);
+               clear(PWM_port,PWM_pin_1);
+               _delay_us(19000);
+         }
+      //
+      // 1.5 ms on time, both
+      //
+            for (i = 0; i < loop_count; ++i) {
+               set(PWM_port,PWM_pin_1);
+               _delay_us(1500);
+               clear(PWM_port,PWM_pin_1);
+               _delay_us(18500);
+         }
+      //
+      // 2 ms on time, both
+      //
+            for (i = 0; i < loop_count; ++i) {
+               set(PWM_port,PWM_pin_1);
+               _delay_us(2000);
+               clear(PWM_port,PWM_pin_1);
+               _delay_us(18000);
+         }
+
+      //
+      // 1 ms on time, channel 1
+      //
+            for (i = 0; i < loop_count; ++i) {
+               set(PWM_port,PWM_pin_1);
+               _delay_us(1000);
+               clear(PWM_port,PWM_pin_1);
+               _delay_us(19000);
+         }
+
+      //
+      // 1.5 ms on time, channel 1
+      //
+            for (i = 0; i < loop_count; ++i) {
+               set(PWM_port,PWM_pin_1);
+               _delay_us(1500);
+               clear(PWM_port,PWM_pin_1);
+               _delay_us(18500);
+         }
+      //
+      // 2 ms on time, channel 1
+      //
+            for (i = 0; i < loop_count; ++i) {
+               set(PWM_port,PWM_pin_1);
+               _delay_us(2000);
+               clear(PWM_port,PWM_pin_1);
+               _delay_us(18000);
+         }
+         value=0;
+         }
+         }
       }
-   }
