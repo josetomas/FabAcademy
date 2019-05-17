@@ -2,8 +2,8 @@
 #include <Wire.h>
 #include <SoftwareSerial.h>
 
-#define rxPin 1
-#define txPin 0
+#define rxPin 0
+#define txPin 1
 
 
 SoftwareSerial mySerial( rxPin,txPin);
@@ -13,8 +13,8 @@ void setup() {
 }
 
 void loop() {
-  Wire.requestFrom(8,5);    // request 6 bytes from slave device #8
-
+  Wire.requestFrom(8,6);    // request 6 bytes from slave device #8
+  //mySerial.println("lala");
   while (Wire.available()) { 
     char c = Wire.read(); 
     mySerial.print(c);         
