@@ -28,7 +28,6 @@
 
 #define PWM_port PORTA
 #define PWM_direction DDRA
-#define PWM_pin_0 (1 << PA6)
 #define PWM_pin_1 (1 << PA7)
 
 #define loop_count 30
@@ -55,12 +54,12 @@ int main(void) {
       //
       // 1 ms on time, both
       //
-      for (i = 0; i < loop_count; ++i) {
+      /*for (i = 0; i < loop_count; ++i) {
          set(PWM_port,PWM_pin_1);
          _delay_us(1000);
          clear(PWM_port,PWM_pin_1);
          _delay_us(19000);
-         }
+         }*/
       //
       // 1.5 ms on time, both
       //
@@ -77,13 +76,13 @@ int main(void) {
          set(PWM_port,PWM_pin_1);
          _delay_us(2000);
          clear(PWM_port,PWM_pin_1);
-         _delay_us(18000);
+         _delay_us(18500);
          }
 
       //
       // 1 ms on time, channel 1
       //
-      for (i = 0; i < loop_count; ++i) {
+      /*for (i = 0; i < loop_count; ++i) {
          set(PWM_port,PWM_pin_1);
          _delay_us(1000);
          clear(PWM_port,PWM_pin_1);
@@ -107,6 +106,6 @@ int main(void) {
          _delay_us(2000);
          clear(PWM_port,PWM_pin_1);
          _delay_us(18000);
-         }
+         }*/
       }
    }

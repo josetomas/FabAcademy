@@ -36,9 +36,9 @@
 #define PWM_direction DDRA
 #define PWM_pin_1 (1 << PA7)
 
-#define loop_count 30
+#define loop_count 10
 
-int trigger = 950;
+int trigger = 970;
 int i=0;
 
 void put_char(volatile unsigned char *port, unsigned char pin, char txchar) {
@@ -162,7 +162,8 @@ int main(void) {
          array_hi = ADCH;
          int value = 256*array_hi+array_lo;
          if (value>trigger){
-            for (i = 0; i < loop_count; ++i) {
+            while(1){
+               for (i = 0; i < loop_count; ++i) {
                set(PWM_port,PWM_pin_1);
                _delay_us(1000);
                clear(PWM_port,PWM_pin_1);
@@ -215,7 +216,7 @@ int main(void) {
                clear(PWM_port,PWM_pin_1);
                _delay_us(18000);
          }
-         value=0;
+      }
          }
          }
       }
