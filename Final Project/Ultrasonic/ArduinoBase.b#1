@@ -1011,6 +1011,12 @@ design rules under a new name.</description>
 <signal name="N$2">
 <via x="32.8422" y="30.4038" extent="1-16" drill="0.35"/>
 </signal>
+<signal name="N$4">
+<via x="0.7366" y="30.3784" extent="1-16" drill="0.35"/>
+</signal>
+<signal name="N$8">
+<via x="33.0454" y="0.7366" extent="1-16" drill="0.35"/>
+</signal>
 </signals>
 <mfgpreviewcolors>
 <mfgpreviewcolor name="soldermaskcolor" color="0xC8008000"/>

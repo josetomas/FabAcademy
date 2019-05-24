@@ -38,7 +38,7 @@
 
 #define loop_count 10
 
-int trigger = 970;
+int trigger = 950;
 int i=0;
 
 void put_char(volatile unsigned char *port, unsigned char pin, char txchar) {
