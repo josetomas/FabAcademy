@@ -1245,9 +1245,9 @@ high speed (Philips)</description>
 <part name="U$5" library="fab" deviceset="PINHD-2X2-SMD" device=""/>
 <part name="U$6" library="fab" deviceset="PINHD-2X2-SMD" device=""/>
 <part name="R3" library="fab" deviceset="RES-US" device="1206FAB" value="10K"/>
-<part name="R4" library="fab" deviceset="RES-US" device="1206FAB" value="10K"/>
-<part name="R5" library="fab" deviceset="RES-US" device="1206FAB" value="10K"/>
-<part name="R6" library="fab" deviceset="RES-US" device="1206FAB" value="10K"/>
+<part name="R4" library="fab" deviceset="RES-US" device="1206FAB" value="10"/>
+<part name="R5" library="fab" deviceset="RES-US" device="1206FAB" value="10"/>
+<part name="R6" library="fab" deviceset="RES-US" device="1206FAB" value="0"/>
 <part name="R7" library="fab" deviceset="RES-US" device="1206FAB" value="10K"/>
 </parts>
 <sheets>
