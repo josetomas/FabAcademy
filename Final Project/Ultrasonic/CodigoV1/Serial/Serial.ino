@@ -1,8 +1,8 @@
 //Comunicación Serial, usar baudratede 1200 en el terminal. 
 
 #include <SoftwareSerial.h>
-#define rxPin 0
-#define txPin 1
+#define rxPin 1
+#define txPin 0
 
 SoftwareSerial mySerial(rxPin,txPin);
 

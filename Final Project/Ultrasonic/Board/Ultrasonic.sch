@@ -1032,10 +1032,10 @@ Single-Supply, MicroAmplifier(TM) Series</description>
 <part name="IC3" library="fab" deviceset="OPAMP" device="SOT23-5"/>
 <part name="U$5" library="fab" deviceset="PINHD-2X2-SMD" device=""/>
 <part name="U$6" library="fab" deviceset="PINHD-2X2-SMD" device=""/>
-<part name="R3" library="fab" deviceset="RES-US" device="1206FAB" value="10K"/>
-<part name="R4" library="fab" deviceset="RES-US" device="1206FAB" value="10"/>
-<part name="R5" library="fab" deviceset="RES-US" device="1206FAB" value="10"/>
-<part name="R7" library="fab" deviceset="RES-US" device="1206FAB" value="10K"/>
+<part name="R3" library="fab" deviceset="RES-US" device="1206FAB" value="100k"/>
+<part name="R4" library="fab" deviceset="RES-US" device="1206FAB" value="1k"/>
+<part name="R5" library="fab" deviceset="RES-US" device="1206FAB" value="1k"/>
+<part name="R7" library="fab" deviceset="RES-US" device="1206FAB" value="100k"/>
 <part name="R6" library="fab" deviceset="RES-US" device="1206FAB" value="10"/>
 <part name="R8" library="fab" deviceset="RES-US" device="1206FAB" value="10"/>
 <part name="R9" library="fab" deviceset="RES-US" device="1206FAB" value="10"/>

@@ -1,9 +1,9 @@
 #include <SoftwareSerial.h>
-#define rxPin 0
-#define txPin 1
+#define rxPin 1
+#define txPin 0
 SoftwareSerial mySerial(rxPin,txPin);
 int PWM=7;
-int valor=250;
+float valor=.0;
 
 void setup() {
   mySerial.begin(9600);
@@ -13,8 +13,7 @@ void setup() {
 
 void loop() {
   analogWrite(PWM,valor);
-  int lectura = analogRead(2);
-  mySerial.println(lectura);
-  delay(10);
-
+  float lectura = analogRead(2);
+  float rel=lectura/valor;
+  mySerial.println(rel*10.0);
 }

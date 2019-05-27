@@ -1400,14 +1400,14 @@ Single-Supply, MicroAmplifier(TM) Series</description>
 </net>
 <net name="RX" class="0">
 <segment>
-<pinref part="IC1" gate="1" pin="(PCINT1/AIN0/ADC1)PA1"/>
-<wire x1="116.84" y1="48.26" x2="119.38" y2="48.26" width="0.1524" layer="91"/>
-<label x="121.92" y="48.26" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="U$1" gate="G$1" pin="RXD"/>
 <wire x1="154.94" y1="45.72" x2="152.4" y2="45.72" width="0.1524" layer="91"/>
 <label x="147.32" y="45.72" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="1" pin="(PCINT0/AREF/ADC0)PA0"/>
+<wire x1="116.84" y1="45.72" x2="119.38" y2="45.72" width="0.1524" layer="91"/>
+<label x="121.92" y="45.72" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -1498,14 +1498,14 @@ Single-Supply, MicroAmplifier(TM) Series</description>
 </net>
 <net name="TX" class="0">
 <segment>
-<pinref part="IC1" gate="1" pin="(PCINT0/AREF/ADC0)PA0"/>
-<wire x1="116.84" y1="45.72" x2="119.38" y2="45.72" width="0.1524" layer="91"/>
-<label x="121.92" y="45.72" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="U$1" gate="G$1" pin="TXD"/>
 <wire x1="154.94" y1="48.26" x2="152.4" y2="48.26" width="0.1524" layer="91"/>
 <label x="147.32" y="48.26" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="1" pin="(PCINT1/AIN0/ADC1)PA1"/>
+<wire x1="116.84" y1="48.26" x2="119.38" y2="48.26" width="0.1524" layer="91"/>
+<label x="121.92" y="48.26" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
