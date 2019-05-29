@@ -1,18 +1,4 @@
-//
-// hello.SPU0414HR5H.c
-//
-// SPU0414HR5H microphone hello-world
-//    9600 baud FTDI interface
-//
-// Neil Gershenfeld 11/17/15
-// (c) Massachusetts Institute of Technology 2015
-//
-// This work may be reproduced, modified, distributed,
-// performed, and displayed for any purpose. Copyright is
-// retained and must be preserved. The work is provided
-// as is; no warranty is provided, and users accept all 
-// liability.
-//
+
 
 #include <avr/io.h>
 #include <util/delay.h>
