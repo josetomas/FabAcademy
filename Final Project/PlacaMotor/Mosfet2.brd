@@ -143,9 +143,9 @@
 <board>
 <plain>
 <wire x1="0" y1="0" x2="36.2968" y2="-0.0762" width="0" layer="20"/>
-<wire x1="36.2968" y1="-0.0762" x2="36.3222" y2="37.3534" width="0" layer="20"/>
-<wire x1="36.3222" y1="37.3534" x2="0.0254" y2="37.4296" width="0" layer="20"/>
-<wire x1="0.0254" y1="37.4296" x2="0" y2="0" width="0" layer="20"/>
+<wire x1="36.2968" y1="-0.0762" x2="36.2968" y2="37.2772" width="0" layer="20"/>
+<wire x1="36.2968" y1="37.2772" x2="0" y2="37.3534" width="0" layer="20"/>
+<wire x1="0" y1="37.3534" x2="0" y2="0" width="0" layer="20"/>
 </plain>
 <libraries>
 <library name="fab">
