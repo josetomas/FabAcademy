@@ -1,4 +1,5 @@
 
+#include <Wire.h>
 #include <SoftwareSerial.h>
 
 #define rxPin 0
