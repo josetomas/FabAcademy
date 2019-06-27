@@ -27,10 +27,6 @@ void setup()  {
 } 
 
 void loop()  {
-  // get the current elapsed time
-  currentTime = millis();
-  if(currentTime >= (loopTime + 1)){
-    // 5ms since last check of encoder = 200Hz  
     encoder_A = digitalRead(pin_A);    // Read encoder pins
     encoder_B = digitalRead(pin_B);   
     if((!encoder_A) && (encoder_A_prev)){
@@ -52,9 +48,6 @@ void loop()  {
     // set the brightness of pin 9:
     mySerial.println(brightness);
     analogWrite(7, brightness);   
-   
-    loopTime = currentTime;  // Updates loopTime
-  }
   // Other processing can be done here
                            
 }

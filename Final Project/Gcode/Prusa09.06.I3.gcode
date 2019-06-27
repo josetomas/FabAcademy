@@ -12,7 +12,6 @@
 M107
 M107
 g92 z0
-g1 f1000 z-310
 g92 x0 y0 a0 z0
 ; Filament gcode
 G21 ; set units to millimeters
