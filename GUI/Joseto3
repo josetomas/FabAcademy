@@ -1,0 +1,44 @@
+    from tkinter import *
+import serial
+import time
+ardSerialData = serial.Serial("COM5", 9600)
+root = Tk()
+root.wm_title("sensor data")
+root.config(bg = "#828481")
+
+rightFrame = Frame(root, width=200, height = 600, highlightthickness=2, highlightbackground="#111")
+rightFrame.grid(row=0, column=1, padx=100, pady=2, sticky=N+S)
+
+UltraLog = Text(rightFrame, width = 20, height = 10, takefocus=0, highlightthickness=1, highlightbackground="#333")
+UltraLog.grid(row=0, column=0, padx=10, pady=2)
+
+TempLog = Text(rightFrame, width = 20, height = 15, takefocus=0, highlightthickness=1, highlightbackground="#333")
+TempLog.grid(row=0, column=1, padx=10, pady=2)
+
+def getRaw():
+    if (ardSerialData.inWaiting() > 0):
+        raw = ardSerialData.readline()
+        sensor = raw.split()
+        return sensor
+
+def ultDisp():
+    ultData = sensor[0]
+    if (ardSerialData.inWaiting() > 0):
+        UltraLog.insert(0.0,ultData)
+        root.after(1000, ultDisp)
+    else:
+        UltraLog.insert (0.0, "no Ultra")
+        root.after(2000, ultDisp)
+
+def tempDisp():
+    tempData = sensor[1]
+    if (ardSerialData.inWaiting() > 0):
+        TempLog.insert(0.0,tempData)
+        root.after(1000, tempDisp)
+    else:
+        TempLog.insert (0.0, "no temp ")
+        root.after(2000, tempDisp)
+
+root.after(6000, ultDisp)
+root.after(6000, tempDisp)
+root.mainloop()
